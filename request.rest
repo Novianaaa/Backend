@@ -1,0 +1,350 @@
+//create user
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "name": "salman",
+    "email": "salman@gmail.com",
+    "password": "123456",
+    "confPassword": "123456",
+    "role": "user",
+    "nis": "20014552",
+    "nameLengkap":"tidak ada",
+    "tempatLahir": "Temanggung",
+    "tanggalLahir": 10122002,
+    "jenisKelamin": "perempuan",
+    "noTelepon": "085877180502",
+    "agama": "islam",
+    "alamat": "Temanggung",
+    "asalSekolah": "tidak sekolah",
+    "statusSantri": "Mahasiswa",
+    "namaWali": "siapa walinya",
+    "pekerjaanWali": "penganngguran",
+    "alamatWali": "Temanggung",
+    "noTeleponWali": "085325429563",
+    "kamarId":1,
+    "kelasId": 1
+}
+
+###
+//get all user
+GET  http://localhost:5000/users
+
+###
+// get singgel user
+GET  http://localhost:5000/users/c9017f67-7355-48f9-a0e2-5345f28bf466
+
+
+
+###
+//update
+PATCH  http://localhost:5000/users/2a99eeae-7b9f-44c6-92cb-188c0a1af798
+Content-Type: application/json
+
+{
+    "name": "alfariziupdate",
+    "email": "alfariziupdate@gmail.com",
+    "password": "",
+    "confPassword": "",
+    "role": "user"
+}
+
+###
+//delete
+DELETE   http://localhost:5000/santri/a8b7935e-71a6-4b86-89d9-44cd60d758dd
+###
+//login user
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "dian@gmail.com",
+    "password": "123456"
+}
+###
+//login admin
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "password": "123456"
+}
+
+###
+GET http://localhost:5000/me
+
+###
+DELETE  http://localhost:5000/logout
+
+
+###
+/// santri
+GET http://localhost:5000/santri
+
+###
+/// Santri By Id
+GET http://localhost:5000/santri/5cfa289d-e8f3-49a2-a35f-3f0098a55c05
+
+### 
+// Create Data Santri
+POST http://localhost:5000/santri
+Content-Type: application/json
+
+{
+    "nis": 20824552,
+    "nameLengkap": "Dianaaa",
+    "tempat_lahir": "Temanggung",
+    "tanggal_lahir": 10122002,
+    "jenis_kelamin": "perempuan",
+    "no_telepon": "85877180502",
+    "agama": "islam",
+    "alamat": "Temanggung",
+    "asal_sekolah": "tidak sekolah",
+    "status_santri": "Mahasiswa",
+    "nama_wali": "siapa walinya",
+    "pekerjaan_wali": "penganngguran",
+    "alamat_wali": "Temanggung",
+    "no_telepon_wali": "85325429563",
+    "kelasId": 1,
+    "kamarId": 1
+}
+
+###
+// update santri 
+
+PATCH  http://localhost:5000/santri/a1baea57-2577-44f5-9e08-e170c503ccb6
+Content-Type: application/json
+
+{
+   
+    "nis": "20014542",
+    "nameLengkap":"Muhammad salman ",
+    "tempatLahir": "Temanggung",
+    "tanggalLahir": 10122002,
+    "jenisKelamin": "laki-laki",
+    "noTelepon": "085877180502",
+    "agama": "islam",
+    "alamat": "Temanggung",
+    "asalSekolah": "tidak sekolah",
+    "statusSantri": "Mahasiswa",
+    "namaWali": "siapa walinya",
+    "pekerjaanWali": "penganngguran",
+    "alamatWali": "Temanggung",
+    "noTeleponWali": "085325429563"
+
+}
+
+###
+// delete santri 
+
+DELETE http://localhost:5000/santri/08dc248f-2277-4c9d-bd97-ad0f3790e851
+###
+/// Get Ortu
+GET http://localhost:5000/ortu
+
+###
+///Get Ortu By Id
+GET http://localhost:5000/ortu/"id"
+
+###
+/// Create Data Orang Tua
+POST http://localhost:5000/ortu/ebaadcb7-6c12-4eed-b952-0af03f545135
+Content-Type: application/json
+
+{
+    
+    "namaAyah": "namaAyah",
+    "nikAyah": "nikAyah",
+    "tempatLahirAyah":"tempatLahirAyah",
+    "tanggalLahirAyah": 2010002,
+    "pendidikanAyah": "pendidikanAyah",
+    "pekerjaanAyah": "pekerjaanAyah",
+    "penghasilanAyah": "penghasilanAyah",
+    "alamatAyah": "alamatAyah",
+    "noTeleponAyah": "noTeleponAyah",
+    "namaIbu": "namaIbu",
+    "nikIbu": "nikIbu",
+    "tempatLahirIbu": "tempatLahirIbu",
+    "tanggalLahirIbu": 3010002,
+    "pendidikanIbu": "pendidikanIbu",
+    "pekerjaanIbu": "pekerjaanIbu",
+    "penghasilanIbu": "penghasilanIbu",
+    "alamatIbu": "alamatIbu",
+    "noTeleponIbu": "noTeleponIbu"
+    
+}
+
+###
+/// create kamar 
+POST   http://localhost:5000/kamar
+Content-Type: application/json
+
+{
+
+    "namaKamar": "Kamar 3"
+
+}
+
+###
+///Update Data Kamar
+PATCH    http://localhost:5000/kamar/cc182c8e-d7f6-4360-8ea3-b34f52366931
+Content-Type: application/json
+
+{
+
+    "namaKamar": "Kamar 3"
+
+}
+
+###
+/// get kamar
+GET http://localhost:5000/kamar
+
+###
+/// Delete Kamar
+DELETE http://localhost:5000/kamar/ed69c4b7-653b-4bf0-93e2-0d7cd627f3b4
+
+###
+///Get Ustadz
+GET  http://localhost:5000/ustadz
+
+###
+///Get UstadzById
+GET  http://localhost:5000/ustadz
+
+###
+///Create Ustadz
+POST   http://localhost:5000/ustadz
+Content-Type: application/json
+
+{
+
+    "namaUstadz": "saiful",
+    "alamatUstadz": "magelang",
+    "noTeleponUstadz": "0867656342",
+    "pendidikanUstadz": "S1 Psikologi",
+    "pekerjaanUstadz":"Guru"
+
+}
+
+### 
+/// Delete Ustadz
+DELETE http://localhost:5000/ustadz/50f605f5-08db-40cd-8fd5-f647133a5ee9
+
+###
+/// Get tahun akademik 
+
+GET http://localhost:5000/tahunakademik
+
+###
+/// create kamar 
+POST   http://localhost:5000/tahunakademik
+Content-Type: application/json
+
+{
+
+    "tahunAjar": "2023/2024",
+    "semester": "Genap"
+
+}
+ 
+###
+/// create kelas 
+POST   http://localhost:5000/kelas
+Content-Type: application/json
+
+{
+
+    "namaKelas": "ibtida"
+
+}
+ 
+###
+/// Get tahun kelas 
+
+GET http://localhost:5000/kelas/deb661bf-12b2-4df9-820c-0f3953edeed2
+
+### 
+/// Delete kelas
+DELETE http://localhost:5000/kelas/
+
+###
+/// Get pelajaran 
+
+GET http://localhost:5000/pelajaran/66e6ea06-12e5-447f-8f63-6f7e3b502e05
+###
+/// Get pelajaran by id
+
+GET http://localhost:5000/ustadz
+
+
+###
+/// create pelajaran
+POST   http://localhost:5000/pelajaran
+Content-Type: application/json
+
+{
+  "jenisPelajaran": "Matematika",
+  "namaKitab": "Algebra",
+  "ustadzId": 1,
+  "kelasId": 1
+ 
+}
+
+### Update Pelajaran
+PATCH    http://localhost:5000/pelajaran/7dedf780-f58d-4da8-8de8-802907e0b49b
+Content-Type: application/json
+
+{
+  "jenisPelajaran": "Fiqih",
+  "namaKitab": "Fathul Qorib",
+  "ustadzId": 5,
+  "kelasId":1
+}
+
+###
+/// delete pelajaran
+DELETE http://localhost:5000/pelajaran/7dedf780-f58d-4da8-8de8-802907e0b49b
+
+###
+///Get Jadwal
+GET  http://localhost:5000/jadwal
+
+###
+///create jadwal
+POST   http://localhost:5000/jadwal
+Content-Type: application/json
+
+{
+  "hari": "Rabu",
+  "kelasId": 1,
+  "pelajaranId":1
+}
+###
+///create Update
+PATCH    http://localhost:5000/jadwal/fc6b427b-3168-4473-aabb-b88e6649f6f0
+Content-Type: application/json
+
+{
+  "hari": "Rabu",
+  "kelasId": 1,
+  "pelajaranId":1
+}
+
+### 
+///delete Jadwal 
+DELETE  http://localhost:5000/jadwal/fc6b427b-3168-4473-aabb-b88e6649f6f0
+
+### 
+/// search 
+
+GET http://localhost:5000/users?search_query=paijo&page=0&limit=10
+### 
+/// search 
+
+GET http://localhost:5000/ustadz?search_query=&page=0&limit=10
+### 
+/// search 
+
+GET http://localhost:5000/santri?search_query=muhammad&page=0&limit=10

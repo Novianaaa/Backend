@@ -34,14 +34,16 @@ export const getKelas = async (req, res) => {
         totalRows: totalRows,
         totalPage: totalPage
     });
-      // try {
-      //     const response = await Kelas.findAll({
-      //         attributes:['uuid', 'namaKelas']
-      //     });
-      //     res.status(200).json(response);
-      // } catch (error) {
-      //     res.status(500).json({msg: error.message});
-      // }
+  }
+export const getDataKelas = async (req, res) => {
+      try {
+          const response = await Kelas.findAll({
+              attributes:['id', 'uuid', 'namaKelas']
+          });
+          res.status(200).json(response);
+      } catch (error) {
+          res.status(500).json({msg: error.message});
+      }
   }
 export const getKelasById = async (req, res) => {
   try {

@@ -5,38 +5,68 @@ import User from "../models/UserModel.js";
 import {Op} from "sequelize";
 
 export const getSantri = async (req, res) =>{
+    try {
     const page = parseInt(req.query.page) || 0;
     const limit = parseInt(req.query.limit) || 10;
     const search = req.query.search_query || "";
     const offset = limit * page;
-    const totalRows = await Santri.count({
-        where:{
-            [Op.or]:[{nameLengkap:{
-                [Op.like]: '%'+search+'%'
-            }}]
-        }
-    });
 
-    const totalPage = Math.ceil(totalRows / limit);
-    const result = await Santri.findAll({
+    const {count, rows: santri } = await Santri.findAndCountAll({
+        attributes: [
+            "uuid",
+            "nis",
+            "nameLengkap",
+            "tempatLahir",
+            "tanggalLahir",
+            "jenisKelamin",
+            "noTelepon",
+            "agama",
+            "alamat",
+            "asalSekolah",
+            "statusSantri",
+            "namaWali",
+            "pekerjaanWali",
+            "alamatWali",
+            "noTeleponWali",
+          ],
+          include: [
+            {
+                model:Kamar,
+                attributes:[
+                    "namaKamar",
+                ],
+            },
+            {
+                model:Kelas,
+                attributes: [
+                    "namaKelas",
+                ],
+            },
+          ],
         where:{
-            [Op.or]:[{nameLengkap:{
-                [Op.like]: '%'+search+'%'
+            [Op.or]:[
+                {
+                    nameLengkap:{
+                        [Op.like]: '%'+search+'%'
             }}]
-        },
-        offset: offset,
-        limit: limit,
-        order: [
-            ['id', 'DESC']
-        ]
-    });
+          },
+          offset: offset,
+          limit: limit,
+          order: [["id", "DESC"]],
+        });
+    const totalPage = Math.ceil(count / limit);
+
     res.json({
-        result: result,
+        result: santri,
         page: page,
         limit: limit,
-        totalRows: totalRows,
+        totalRows: count,
         totalPage: totalPage
     });
+    } catch (error) {
+    res.status(500).json({ msg: error.message });
+    }
+};
 //     try {
 //         let response;
 //         if(req.role === "admin"){
@@ -63,7 +93,7 @@ export const getSantri = async (req, res) =>{
 //     } catch (error) {
 //         res.status(500).json({msg: error.message});
 //     }
-}
+
 
 export const getSantriById = async(req, res) =>{
     try {
@@ -88,10 +118,17 @@ export const getSantriById = async(req, res) =>{
                 {
                     model: Kelas,
                     attributes: ["namaKelas"],
+                    where: {
+                        namaKelas:"1"
+                    }
                 },
                 {
                     model:Kamar,
                     attributes: ["namaKamar"]
+                },
+                {
+                    model: Kelas,
+
                 }
             ]
             });
@@ -115,7 +152,7 @@ export const getSantriById = async(req, res) =>{
 
 export const createSantri = async(req, res) =>{
     const { nis, nameLengkap, tempatLahir, tanggalLahir, jenisKelamin, noTelepon, agama, 
-        alamat, asalSekolah, statusSantri, namaWali, pekerjaanWali, alamatWali, noTeleponWali, kelasId, kamarId} = req.body;
+        alamat, asalSekolah, statusSantri, namaWali, pekerjaanWali, alamatWali, noTeleponWali, kelasId, kamarId, santriId} = req.body;
     try {
           // Cek keberadaan kelasId
     const kelas = await Kelas.findByPk(kelasId);
@@ -139,7 +176,8 @@ export const createSantri = async(req, res) =>{
             noTeleponWali,
             kelasId,
             kamarId,
-            userId: req.userId
+            santriId,
+    
         });
         res.status(201).json({msg: "Data Santri Created Successfuly"});
     } catch (error) {

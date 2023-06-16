@@ -11,7 +11,7 @@ export const getUsers = async (req, res) => {
       const offset = limit * page;
   
       const { count, rows: users } = await User.findAndCountAll({
-        attributes: ["uuid", "name", "email", "role", "santriId"],
+        attributes: ["uuid", "email", "role"],
         include: [
           {
             model: Santri,
@@ -69,7 +69,7 @@ export const getUsers = async (req, res) => {
   export const getUserById = async (req, res) => {
     try {
       const response = await User.findOne({
-        attributes: ["uuid", "name", "email", "role", "santriId"],
+        attributes: ["uuid", "email", "role", ],
         where: {
           uuid: req.params.id,
         },
@@ -111,18 +111,7 @@ export const getUsers = async (req, res) => {
       role,
       nis,
       nameLengkap,
-      tempatLahir,
-      tanggalLahir,
-      jenisKelamin,
-      noTelepon,
-      agama,
-      alamat,
-      asalSekolah,
-      statusSantri,
-      namaWali,
-      pekerjaanWali,
-      alamatWali,
-      noTeleponWali,
+      santriId
     } = req.body;
   
     if (password !== confPassword)
@@ -139,23 +128,10 @@ export const getUsers = async (req, res) => {
         password: hashPassword,
         role: role,
       });
-  
       const santri = await Santri.create({
         nis: nis,
         nameLengkap: nameLengkap,
-        tempatLahir: tempatLahir,
-        tanggalLahir: tanggalLahir,
-        jenisKelamin: jenisKelamin,
-        noTelepon: noTelepon,
-        agama: agama,
-        alamat: alamat,
-        asalSekolah: asalSekolah,
-        statusSantri: statusSantri,
-        namaWali: namaWali,
-        pekerjaanWali: pekerjaanWali,
-        alamatWali: alamatWali,
-        noTeleponWali: noTeleponWali,
-        userId: user.uuid, // Menggunakan uuid user yang baru dibuat sebagai userId
+        santriId: user.id // Menggunakan uuid user yang baru dibuat sebagai userId
       });
   
       res.status(201).json({ msg: "Register Berhasil" });

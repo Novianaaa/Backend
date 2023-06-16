@@ -3,32 +3,17 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-    "name": "salman",
-    "email": "salman@gmail.com",
+    "email": "novi@gmail.com",
     "password": "123456",
     "confPassword": "123456",
-    "role": "user",
-    "nis": "20014552",
-    "nameLengkap":"tidak ada",
-    "tempatLahir": "Temanggung",
-    "tanggalLahir": 10122002,
-    "jenisKelamin": "perempuan",
-    "noTelepon": "085877180502",
-    "agama": "islam",
-    "alamat": "Temanggung",
-    "asalSekolah": "tidak sekolah",
-    "statusSantri": "Mahasiswa",
-    "namaWali": "siapa walinya",
-    "pekerjaanWali": "penganngguran",
-    "alamatWali": "Temanggung",
-    "noTeleponWali": "085325429563",
-    "kamarId":1,
-    "kelasId": 1
+    "role": "admin",
+    "nis":"1234567",
+    "nameLengkap":"noviana"
 }
 
 ###
 //get all user
-GET  http://localhost:5000/users
+GET  http://localhost:5000/santri
 
 ###
 // get singgel user
@@ -94,20 +79,21 @@ Content-Type: application/json
 {
     "nis": 20824552,
     "nameLengkap": "Dianaaa",
-    "tempat_lahir": "Temanggung",
-    "tanggal_lahir": 10122002,
-    "jenis_kelamin": "perempuan",
-    "no_telepon": "85877180502",
+    "tempatLahir": "Temanggung",
+    "tanggalLahir": 10122002,
+    "jenisKelamin": "perempuan",
+    "noTelepon": "85877180502",
     "agama": "islam",
     "alamat": "Temanggung",
-    "asal_sekolah": "tidak sekolah",
-    "status_santri": "Mahasiswa",
-    "nama_wali": "siapa walinya",
-    "pekerjaan_wali": "penganngguran",
-    "alamat_wali": "Temanggung",
-    "no_telepon_wali": "85325429563",
+    "asalSekolah": "tidak sekolah",
+    "statusSantri": "Mahasiswa",
+    "namaWali": "siapa walinya",
+    "pekerjaanWali": "penganngguran",
+    "alamatWali": "Temanggung",
+    "noTeleponWali": "85325429563",
     "kelasId": 1,
-    "kamarId": 1
+    "kamarId": 1,
+    "santriId":1
 }
 
 ###
@@ -276,7 +262,7 @@ GET http://localhost:5000/pelajaran/66e6ea06-12e5-447f-8f63-6f7e3b502e05
 ###
 /// Get pelajaran by id
 
-GET http://localhost:5000/ustadz
+GET http://localhost:5000/pelajaran
 
 
 ###

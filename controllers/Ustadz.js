@@ -53,6 +53,21 @@ export const getUstadz = async (req, res) => {
         totalRows: totalRows,
         totalPage: totalPage
     });
+}
+  export const getDataUstadz = async (req, res) => {
+        try {
+          const response = await Ustadz.findAll({
+            attributes:['id',
+            'namaUstadz',
+            'alamatUstadz',
+            'noTeleponUstadz', 
+            'pendidikanUstadz', 
+            'pekerjaanUstadz'],
+          });
+          res.status(200).json(response);
+      } catch (error) {
+          res.status(500).json({msg: error.message});
+      }
   };
 export const getUstadzById =async (req, res) => {
     try {

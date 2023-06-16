@@ -84,20 +84,20 @@ const Santri = db.define('santri', {
             freezeTableName:true
         });
 
-Santri.associate = function (models){
-    Santri.hasMany(models.Users, {
-        foreignKey: 'userId',
-        as: 'user'
-    });
-}
+// Santri.associate = function (models){
+//     Santri.hasMany(models.Users, {
+//         foreignKey: 'userId',
+//         as: 'user'
+//     });
+// }
 
-// Kamar.hasMany(Santri);
-// Santri.belongsTo(Kamar, {foreignKey: 'kamarId'});
+Kamar.hasMany(Santri);
+Santri.belongsTo(Kamar, {foreignKey: 'kamarId'});
 
-// Kelas.hasMany(Santri);
-// Santri.belongsTo(Kelas, {foreignKey: 'kelasId'});
+Kelas.hasMany(Santri);
+Santri.belongsTo(Kelas, {foreignKey: 'kelasId'});
 
-// Nilai.hasMany(Santri);
-// Santri.belongsTo(Nilai, {foreignKey: 'nilaiId'});
+Nilai.hasMany(Santri);
+Santri.belongsTo(Nilai, {foreignKey: 'nilaiId'});
         
 export default Santri;      

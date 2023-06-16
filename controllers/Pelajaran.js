@@ -56,25 +56,26 @@ export const getPelajaran = async (req, res) => {
         totalPage: totalPage
     });
   };
-//   try {
-//     const response = await Pelajaran.findAll({
-//       attributes: ["uuid", "jenisPelajaran", "namaKitab", "ustadzId"],
-//       include: [
-//         {
-//           model: Ustadz,
-//           attributes: ["namaUstadz"],
-//         },
-//         {
-//           model: Kelas,
-//           attributes: ["namaKelas"],
-//         },
-//       ],
-//     });
-//     res.status(200).json(response);
-//   } catch (error) {
-//     res.status(500).json({ msg: error.message });
-//   }
-// };
+export const getDataPelajaran = async (req, res) => {
+  try {
+    const response = await Pelajaran.findAll({
+      attributes: ["uuid", "jenisPelajaran", "namaKitab", "ustadzId"],
+      include: [
+        {
+          model: Ustadz,
+          attributes: ["namaUstadz"],
+        },
+        {
+          model: Kelas,
+          attributes: ["namaKelas"],
+        },
+      ],
+    });
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
 
 export const getPelajaranById = async (req, res) => {
   try {
@@ -102,6 +103,30 @@ export const getPelajaranById = async (req, res) => {
 };
 
 export const createPelajaran = async (req, res) => {
+  const { jenisPelajaran, namaKitab, ustadzId, kelasId } = req.body;
+
+  try {
+    // Cek keberadaan kelasId
+    const kelas = await Kelas.findByPk(kelasId);
+    if (!kelas) {
+      return res.status(400).json({ error: "Invalid kelasId" });
+    }
+
+    // Buat data pelajaran
+    const pelajaran = await Pelajaran.create({
+      jenisPelajaran,
+      namaKitab,
+      ustadzId,
+      kelasId,
+    });
+
+    res.status(201).json({ message: "Pelajaran created successfully", pelajaran });
+  } catch (error) {
+    console.error("Error creating pelajaran:", error);
+    res.status(500).json({ error: "Error creating pelajaran" });
+  }
+};
+export const createDataPelajaran = async (req, res) => {
   const { jenisPelajaran, namaKitab, ustadzId, kelasId } = req.body;
 
   try {
